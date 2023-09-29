@@ -1,0 +1,31 @@
+Ball fall problem
+
+Canvas:
+ctx. prefix
+
+
+Breakable code:
+This code creates the ball's shape
+function drawBall(){
+  ctx.beginPath();
+  //ctx.arc(x, y, 10, 0, Math.PI * 2);
+//I broke it by changing the code below to reflect a different ball radius - the ball just didn't show up anymore
+  ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+  ctx.fillStyle = "#0095DD";
+  ctx.fill();
+  ctx.closePath();
+}
+
+This
+function draw(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawBall();
+  x += dx;
+  y += dy;
+  //new 4/14
+if (y + dy < 0) {
+  dy = -dy;
+
+I can mess with this one and make the ball speed up (increase number size) or slow down (decrease number size) or make it move in a direction (increase or decrease the numbers disproportionately).
+let dx = 1;
+let dy = -10;
