@@ -1,6 +1,4 @@
-function sum(a, b) {
-    return a + b; 
-}
+
 
 function bounceOffWalls(left, right, x, dx) {
     if (x + dx > right || x + dx < left) {
