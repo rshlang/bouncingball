@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>The Bouncing Ball</title>
+    //I can change the title, which I did on 5.25, and then add text to the page here. Why doesn't it stet?
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      canvas {
+        background: #eee;
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+
+    <script>
+      // JavaScript code goes here
+      const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    let x = canvas.width / 2;
+let y = canvas.height - 30;
+let dx = 1;
+let dy = -1;
+//this is new as of 4/14
+const ballRadius = 10;
+//       function draw() {
+//   // drawing code
+//   ctx.clearRect(0, 0, canvas.width, canvas.height);
+//   ctx.beginPath();
+//   ctx.arc(x, y, 30, 0, Math.PI * 2, false)
+// //ctx.arc(50, 50, 10, 0, Math.PI * 2);
+// ctx.fillStyle = "#0095DD";
+// ctx.fill();
+// ctx.closePath();
+// x += dx;
+//   y += dy;
+// }
+function drawBall(){
+  ctx.beginPath();
+  //ctx.arc(x, y, 10, 0, Math.PI * 2);
+  ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+  ctx.arc(x, y, 25, 0, Math.pi * 2);
+  ctx.fillStyle = "#0095DD";
+  ctx.fill();
+  ctx.closePath();
+}
+
+function draw(){
+  let height = canvas.height
+  let width = canvas.width
+  ctx.clearRect(0, 0, width, height);
+  drawBall();
+   
+  x += dx;
+  y += dy;
+  //new 4/14
+  //y = -3
+  //dy = 2
+  
+if (y + dy < 0) {
+  dy = -dy;
+  //dy = -2 
+  //the output here is dy
+}
+    if (y + dy > height) {
+  dy = -dy;
+}
+
+
+if (y + dy > height || y + dy < 0) {
+  dy = -1*(dy);
+  //if (-3 + -2) > height || -3 + -2 < 0)
+}// 2 = -1*(-2)
+//dx = -2
+if (x + dx > width || x + dx < 0) {
+  dx = -dx;
+//dx = 2 (true) 
+}
+//the value of dx at false is -2; the value of dx at true is -\2
+}
+setInterval(draw, 10);
+
+
+
+    //ctx.beginPath();
+    //ctx.rect(20, 30, 50, 50);
+    //ctx.fillStyle = "#FF6600";
+    //ctx.fill();
+    // ctx.closePath();
+    // ctx.beginPath();
+    // ctx.arc(240, 160, 20, 0, Math.PI * 2, false);
+    // ctx.fillStyle = "green";
+    // ctx.fill();
+    // ctx.closePath();
+
+    </script>
+  </body>
+</html>
