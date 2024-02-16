@@ -1,5 +1,6 @@
 //const sum = require('./sum');
 const bounceOffWalls = require('./bounce');
+const bounceOffFloorOrCeiling = require('./vertical');
 // test('adds 1 + 2 to equal 3', () => {
 //     expect(sum(1, 2)).toBe(3);
 //   });
@@ -41,6 +42,15 @@ const bounceOffWalls = require('./bounce');
     //bounceOffWalls is what we're testing
    expect(dx).toBe(2);
     //this is the expectation
+  });
+  test('maintains direction when moving toward the ceiling', () => {
+    const height = 30;
+    const floor = 0;
+    const ceiling = height;
+    let dy = 2;
+    const y = 15;
+    dy = bounceOffFloorOrCeiling(floor, ceiling, y, dy);
+    expect(dy).toBe(2);
   });
   //dx = bounceOffWalls (left, right, x, dx)
 //   if (x + dx > width || x + dx < 0) {

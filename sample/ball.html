@@ -24,7 +24,8 @@
       const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
     let x = canvas.width / 2;
-let y = canvas.height - 30;
+let y = canvas.height / 2;
+// let y = canvas.height - 30;
 let dx = 1;
 let dy = -1;
 //this is new as of 4/14
@@ -50,13 +51,22 @@ function drawBall(){
   ctx.fill();
   ctx.closePath();
 }
-
+function bounceOffWalls(left, right, x, dx) {
+    if (x + dx > right || x + dx < left) {
+        dx = -dx;}
+    return dx;
+}
 function draw(){
   let height = canvas.height
   let width = canvas.width
   ctx.clearRect(0, 0, width, height);
   drawBall();
-   
+  
+// function bounceOffWalls(left, right, x, dx) {
+//     if (x + dx > right || x + dx < left) {
+//         dx = -dx;}
+//     return dx;
+//x = x + dx (this is the longhand for line 65; aka x = x + 1)
   x += dx;
   y += dy;
   //new 4/14
@@ -78,12 +88,16 @@ if (y + dy > height || y + dy < 0) {
   //if (-3 + -2) > height || -3 + -2 < 0)
 }// 2 = -1*(-2)
 //dx = -2
-if (x + dx > width || x + dx < 0) {
-  dx = -dx;
-//dx = 2 (true) 
-}
+var left = 0
+var right = width
+dx = bounceOffWalls(left, right, x, dx)
+// if (x + dx > width || x + dx < 0) {
+//   dx = -dx;
+// //dx = 2 (true) 
+// }
 //the value of dx at false is -2; the value of dx at true is -\2
 }
+
 setInterval(draw, 10);
 
 
