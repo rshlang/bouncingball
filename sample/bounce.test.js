@@ -5,8 +5,8 @@ const bounceOffFloorOrCeiling = require('./vertical');
 //     expect(sum(1, 2)).toBe(3);
 //   });
   test('maintains direction when moving toward the right wall', () => {
-    const width = 30;
-    const left = 0;
+     const width = 30;
+    const left= 0;
     const right = width;
     let dx = 2;
     const x = 15;
@@ -49,6 +49,33 @@ const bounceOffFloorOrCeiling = require('./vertical');
     const ceiling = height;
     let dy = 2;
     const y = 15;
+    dy = bounceOffFloorOrCeiling(floor, ceiling, y, dy);
+    expect(dy).toBe(2);
+  });
+  test('maintains direction when moving toward the floor', () => {
+    const height = 30;
+    const floor = 0;
+    const ceiling = height;
+    let dy = -2;
+    const y = 15;
+    dy = bounceOffFloorOrCeiling(floor, ceiling, y, dy);
+    expect(dy).toBe(-2);
+  });
+  test('reverses direction when hitting the ceiling', () => {
+    const height = 30;
+    const floor = 0;
+    const ceiling = height;
+    let dy = 2;
+    const y = 30;
+    dy = bounceOffFloorOrCeiling(floor, ceiling, y, dy);
+    expect(dy).toBe(-2);
+  });
+  test('reverses direction when hitting the floor', () => {
+    const height = 30;
+    const floor = 0;
+    const ceiling = height;
+    let dy = -2;
+    const y = 0;
     dy = bounceOffFloorOrCeiling(floor, ceiling, y, dy);
     expect(dy).toBe(2);
   });

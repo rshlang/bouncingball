@@ -53,49 +53,43 @@ function drawBall(){
 }
 function bounceOffWalls(left, right, x, dx) {
     if (x + dx > right || x + dx < left) {
-        dx = -dx;}
+        dx = -dx;
+      }
     return dx;
+}
+function bounceOffFloorOrCeiling(floor, ceiling, y, dy) {
+    if (y + dy > ceiling || y + dy < floor){
+       dy = -dy; 
+    }
+       return dy;
 }
 function draw(){
   let height = canvas.height
   let width = canvas.width
+  var left = 0
+  var right = width
+    const floor = 0;
+    const ceiling = height;
   ctx.clearRect(0, 0, width, height);
   drawBall();
   
-// function bounceOffWalls(left, right, x, dx) {
-//     if (x + dx > right || x + dx < left) {
-//         dx = -dx;}
-//     return dx;
-//x = x + dx (this is the longhand for line 65; aka x = x + 1)
   x += dx;
   y += dy;
-  //new 4/14
-  //y = -3
-  //dy = 2
   
-if (y + dy < 0) {
-  dy = -dy;
-  //dy = -2 
-  //the output here is dy
-}
-    if (y + dy > height) {
-  dy = -dy;
-}
-
-
-if (y + dy > height || y + dy < 0) {
-  dy = -1*(dy);
-  //if (-3 + -2) > height || -3 + -2 < 0)
-}// 2 = -1*(-2)
-//dx = -2
-var left = 0
-var right = width
-dx = bounceOffWalls(left, right, x, dx)
-// if (x + dx > width || x + dx < 0) {
-//   dx = -dx;
-// //dx = 2 (true) 
+// if (y + dy < 0) {
+//   dy = -dy;
 // }
-//the value of dx at false is -2; the value of dx at true is -\2
+//     if (y + dy > height) {
+//   dy = -dy;
+// }
+
+
+// if (y + dy > height || y + dy < 0) {
+//   dy = -1*(dy);
+// }
+
+dx = bounceOffWalls(left, right, x, dx);
+dy = bounceOffFloorOrCeiling(floor, ceiling, y, dy);
 }
 
 setInterval(draw, 10);
